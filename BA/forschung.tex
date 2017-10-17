@@ -1,0 +1,264 @@
+\section{Forschungsstand}\raggedbottom 
+Karten in Videobildern zu erkennen stellt ein Problem der Objekterkennung dar.
+Eine häufig verwendete Methode zur Objekterkennung sind Bildmerkmale.
+Im Folgenden werden die Konzepte der Merkmalsdetektion (Feature Detection), Merkmalsbeschreibung (Feature Description) und des Merkmalsabgleiches (Feature Matching) beschrieben.
+Desweiteren werden grundlegende Verfahren und Methoden der digitalen Bildverarbeitung erläutert, die in dieser Arbeit wichtig sind.
+
+\subsection{Digitale Bildverarbeitung}
+
+\subsubsection{Bildbeschreibung}
+
+In der digitalen Bildverarbeitung gibt es mehrere Möglichkeiten, ein Bild zu beschreiben. Zwei häufig genutzte Bildbeschreibungen sind Rasterbilder und Vektorgrafiken \footnote{\cite[S. 15]{Burg06}}. In dieser Arbeit werden ausschließlich Rasterbilder betrachtet.
+
+Ein Rasterbild ist eine zweidimensionale Matrix $I$ der Größe $n \times m$. Diese Größe wird im weiterem Auflösung genannt. Jedes Element dieser Matrix wird als Pixel bezeichnet.
+Welche Informationen in jedem Pixel gespeichert sind, hängt von dem Typ des Bildes ab. Für diese Arbeit wichtig sind Grauwertbilder und Farbbilder.
+
+Grauwertbilder speichern für jeden Pixel einen Wert zwischen 0 und 255. Dieser Wert beschreibt die Helligkeit bzw. Intensität an diesem Bildpunkt. Ein Wert von 0 steht hierbei für keine Helligkeit und ist somit schwarz. Ein Wert von 255 stellt eine maximale Helligkeit dar und ist somit weiß. 
+
+Farbbilder speichern in jedem Pixel drei Komponenten für die drei Primärfarben Rot, Grün und Blau. Die Werte für die einzelnen Komponenten liegen jeweils zwischen 0 bis 255. Die einzelnen Komponenten kodieren, wie bei Graubildern, die Intensität der jeweiligen Farbe an dem Pixel.
+
+\subsubsection{Umwandlung von Farb- zu Graubild}
+
+Bilder müssen für verschiedene Anwendungen von einem Farbbild in ein Graubild umgewandelt werden. Dabei soll die Helligkeit einer Farbe übernommen werden, während die Farbinformationen verloren gehen.
+
+Bei der Umwandlung wird jeder Pixel einzeln von einem Farbwert in einen Grauwert überführt.
+Dabei trägt jede der Primärfarben einen unterschiedlichen Teil zur Helligkeit eines Pixels bei.
+Seien R, G und B jeweils die Werte der einzelnen Farbkomponenten für den betrachteten Pixel.
+Die Formel für den Grauwert eines Pixels ist nach der Empfehlung BT.601\footnote{\cite[S. 3]{international2007studio}} der International Telecommunications Union:
+
+\[
+0.299R +  0.587G + 0.144B
+\] 
+
+Es sei angemerkt, dass es noch weitere Verfahren zur Umwandlung von Farbbilder zu Graubildern gibt \footnote{\cite[S. 4]{international2002parameter}}.
+
+\subsubsection{Kontrast}
+\label{sec:kontrast}
+
+Der Kontrast eines Bildes oder eines Bildausschnittes beschreibt das Verhältnis der maximalen zur minimalen Helligkeit bzw. Intensität. Ein Bild mit einem hohen Kontrast hat eine große Differenz zwischen der maximalen und minimalen Helligkeit.
+
+\subsubsection{Bildrauschen}
+\label{sec:rauschen}
+
+Bei digitalen Bildern, die mit einer Kamera aufgenommen wurden, treten häufig kleine Störungen im Bild auf. Dadurch enstehen Pixel, die von der eigentlichen Farbe oder Helligkeit des Bildes abweichen. Diese Störungen im Bild werden als Bildrauschen bezeichnet. 
+
+
+\subsubsection{Filter}
+
+In der Bildverarbeitung stellen Filter eine Möglichkeit dar, verschiedene Operationen auf einem Bild auszuführen. So können Filter z.B. genutzt werden, um ein Bild zu glätten oder zu schärfen \footnote{\cite[S. 99f]{Burg06}}. Im Folgenden werden nur lineare Filter betrachtet.
+
+Ein Filter berechnet für ein gegebenes Bild neue Werte für alle Pixel oder auch nur einer Auswahl an Pixeln. Hierbei hängt der Wert nicht nur von dem ursprünglichen Wert des Pixels ab, sondern i.d.R auch von den Werten der anderen Pixeln in der Umgebung. Diese Umgebung wird auch Filterregion genannt. Diese Regionen sind i.d.R quadratisch.
+Wie sehr die einzelnen Pixel in der Region in den neuen Wert einfließen, bestimmt eine Filtermatrix. Diese Matrix wird mit ihrem Mittelpunkt über den zu verändernen Pixel gelegt. Es werden alle Pixelwerte mit dem jeweils überlappenden Matrixwert multipliziert und aufaddiert. Das Ergebnis ist der neue Pixelwert (siehe Abbildung \ref{fig:filter}). 
+
+Für eine $3 \times 3$ große Filterregion mit der Filtermatrix $H(i, j) \in \mathbb{R}^{3 \times 3}$ kann der neue Pixelwert $I'(u, v)$ für den Punkt $(u, v)$ wie folgt berechnet werden
+
+\[
+I'(u, v) = \sum_{i = -1}^1 \sum_{j = -1}^1  I(u + i, v + j) H(i, j)
+\]
+
+
+\begin{figure}[h]
+    \centering
+		\includegraphics[scale=0.35]{bilder/filter.png}
+    	\caption{Darstellung der Filteroperation für ein Bild I und die Filtermatrix H. (Abbildung aus \cite[S. 92]{Burg06})}
+    	\label{fig:filter}
+\end{figure}
+
+\subsubsection{Gaußfilter}
+
+Der Gaußfilter ist ein Glättungsfilter, bei dem die Werte der Filtermatrix einer diskreten zweidimensionalen Gaußfunktion entsprechnen.
+
+\[
+G(x, y, \sigma) = \frac{1}{2\pi\sigma^2} e^{-\frac{(x^2 + y^2)}{2 \sigma^2}}
+\]
+
+Je weiter ein Pixel vom betrachteten Punkt entfernt ist, umso geringer ist sein Einfluss auf das Filterergebnis.
+Wie stark diese Werte abnehmen lässt sich mit der Standardabweichung $\sigma$ kontrollieren.
+
+\subsubsection{Douglas-Peucker-Algorithmus}
+\label{sec:douglas}
+
+Der Douglas-Peucker-Algorithmus ist ein Algorithmus, der einen Streckenzug von Punkten durch weglassen einzelner Punkte approximiert \footnote{\cite{douglasalgorithms}}.
+Der Algorithmus startet mit der direkten Verbindung der Endpunkte und fügt rekursiv Zwischenpunkte hinzu, bis eine ausreichend gute Approximation gefunden wurde.
+
+Sei $K = (P_1, P_2, ..., P_n)$ der gegebene Streckenzug mit n Punkten. Zudem wird eine Toleranz $\epsilon$ gewählt.
+
+K wird durch die Strecke $\overline{P_1P_n}$ approximiert. Nun wird geprüft, ob diese Approximation ausreichend ist.
+Hierfür werden die inneren Punkte zwischen $P_1$ und $P_n$ betrachtet.
+
+Es wird der innere Punkt $P_m$ mit dem größten Abstand $d_{max}$ zur Strecke $\overline{P_1P_n}$ gesucht.
+Die Approximation ist ausreichend, wenn es keine inneren Punkte gibt oder $d_{max} \leq \epsilon$ ist. Wird die Approximation als ausreichend befunden, werden alle inneren Punkte verworfen. Ist die Approximation nicht ausreichen, wird der Streckenzug $K$ in zwei Teilfolgen $K_1 = (P_1, ..., P_m)$ und $K_2 = (P_m, ... , P_n)$ aufgeteilt. Diese beiden Teilfolgen werden nun mit dem gleichen Algorithmus approximiert.
+
+Das Endergebnis besteht aus allen Punkten, die nicht verworfen wurden. Keiner der verworfenen Punkte hat zu dem so enstehenden Streckenzug einen größeren Abstand als $\epsilon$.
+
+
+\subsubsection{Haar Merkmal}
+\label{sec:haar}
+
+Ein Haar Merkmal (Haar-like features) beschreibt den Helligkeitsunterschied von zwei aneinanderliegenden rechteckigen Regionen in einem Bild \footnote{\cite{Viola01rapidobject}}.
+Für beide Regionen wird die Summe der Intensität aller Pixel berechnet. Diese beiden Summen werden von einander substrahiert. Der so enstehende Wert für den Helligkeitsunterschied bildet das Haar Merkmal.
+
+Die Wahl der Regionen bestimmt, welche Bildeigenschaften das Merkmal darstellt. Die in Abbildung \ref{fig:haar} dargestellten Regionen sind geeignet, um horizontale bzw. vertikale Kanten zu erkennen.
+
+
+\begin{figure}[h]
+    \centering
+		\includegraphics[scale=0.25]{bilder/haar.png}
+    	\caption{Beispiel für zwei Haar Merkmale. Der jeweils schwarze und weiße Bereich markiert die Regionen. }
+    	\label{fig:haar}
+\end{figure}
+
+
+\subsubsection{Skalenraum}
+
+Ein Objekt, das von einem Menschen beobachtet wird, weist optisch verschiedene Strukturen auf, abhängig von der Distanz zu diesem Objekt. Wird ein Objekt aus großer Entfernung betrachtet, gehen kleinere Strukturen verloren und nur große Strukturen bleiben bestehen.
+So lassen sich z.B. aus der Nähe die Blätter eines Baumes betrachten. Aus einer größeren Entfernung hingegen sind die Blätter nicht mehr zu erkennen und nur die grundlegende Form des Baumes.
+Der Begriff der Skalierung beschreibt, wie groß dieser Effekt ist. Je höher die Skalierung, um so weniger Details sind erkennerbar.
+
+Der Skalenraum ist ein Konzept der Bildverarbeitung, das ein Bild in verschiedenen Skalierungen darstellen kann \footnote{\cite{Lindeberg94scale-spacetheory:}}. Hierbei kann die Skalierung durch einen kontinuierlichen Skalenparameter $\sigma$ kontrolliert werden.
+
+Um die Skalierung eines Bildes zu erhöhen, wird das Bild geglättet. Durch diese Glättung werden kleine Strukturen unterdrückt (siehe Abbildung \ref{fig:scaleSpace}). Die Glättung wird mit einem Gaußfilter erzeugt \footnote{\cite{Lindeberg94scale-spacetheory:}}. Der Skalenparameter entspricht hierbei der Standardabweichung des Gaußfilters.
+
+Die Skalenraumfunktion eines Bildes wird als $L(x, y, \sigma)$ definiert. Hierbei bestimmt das $\sigma$ die Skalierung. Es gilt mit $*$ als Faltungsoperation für das Bild $I(x, y)$:
+
+\[
+L(x, y, \sigma) = G(x, y, \sigma) * I(x, y)
+\] 
+
+
+Wobei $G(x, y, \sigma)$ die 2-Dimensionale Gauß Funktion ist.
+
+\[
+G(x, y, \sigma) =  \frac{1}{2 \pi \sigma^{2}} e^{-\frac{(x^2+y^2)}{2\sigma^2}}
+\]
+
+Der Skalenraum lässt sich in sogenannte Oktaven einteilen. Eine Oktave im Skalenraum ist jeweils eine Verdoppelung bzw. Halbierung der Skalierung.
+
+\begin{figure}[h]
+    \centering
+		\includegraphics[scale=0.5]{bilder/scaleSpace.png}
+    	\caption{Veränderung eines Bildes im Skalenraum. Die Werte für $\sigma$ von links nach rechts: 0, 1.7, 3.4, 5.1, 6.8 und 8.5.}
+    	\label{fig:scaleSpace}
+\end{figure}
+
+
+\subsection{Bildmerkmale}
+
+Bildmerkmale stellen eine Möglichkeit dar, bestimmte Punkte oder auch Objekte in einem Bild auf einem anderen Bild wiederzufinden.
+Ein einzelnes Merkmal ist eine vektorielle Darstellung eines kleinen Bildbereiches.
+
+Um Merkmale für ein gegebenes Bild zu finden werden zwei Schritte vollzogen.
+
+\begin{itemize}
+\item Merkmalsdetektion, findet Punkte im Bild, die sich gut für Merkmale eignen. Diese Punkte werden im Weiteren auch als Keypoints bezeichnet.
+\item Merkmalsbeschreibung, wandelt Punkte in eine vektorielle Darstellung um. Im Weiteren auch Deskriptor genannt.
+\end{itemize}
+
+Es gibt eine große Anzahl an Methoden, um diese beiden Schritte durchzuführen (siehe Tabelle \ref{table:featureMethods}).
+In dieser Arbeit werden die drei Methoden ''Scale-Invariant Feature Transform'' (SIFT), ''Speeded Up Robust Features'' (SURF) und ''Oriented FAST and Rotated BRIEF'' (ORB) betrachtet. 
+
+\begin{table}
+\centering
+	\begin{tabular}{  l c c   }
+	  Methode & Merkmalsdetektion & Merkmalsbeschreibung \\
+	  \midrule
+	  Harris Corner Detection & X & - \\
+	  Features from Accelerated Segment Test & X & - \\
+	  Binary Robust Independent Elementary Features & - & X \\
+	  Scale-Invariant Feature Transform & X & X \\
+	  Speeded-Up Robust Features & X & X \\
+	  Oriented FAST and Rotated BRIEF & X & X \\
+	  
+	\end{tabular}
+\caption{Übersicht häufig verwendeter Merkmalsdetektoren und Merkmalsbeschreibern.}
+\label{table:featureMethods}
+\end{table}
+
+\subsubsection{Merkmalsdetektion}
+\label{sec:featureDetection}
+Der erste Schritt ist das Finden von Bildausschnitten, die Eigenschaften haben, die möglichst einzigartig sind und sich auch in anderen Bildern wiedererkennen lassen. Diese Merkmale sollen so gewählt werden, dass sie auch nach Rotationen oder Veränderung der Bildgröße bestehen bleiben. Flächen ohne große Veränderungen oder Kanten lassen sich schlecht in Bildern wiederfinden.
+Dies lässt sich einfach mit einem Stück blauen Himmel in einem Bild vorstellen. Der Bildausschnitt des Himmels hat keine besonderen Eigenschaften, die ihn einfach von anderen Himmelstücken in Bildern unterscheiden.
+Eine Kante hingegen lässt sich deutlich besser wiederfinden. Jedoch ist es bei einem Ausschnitt einer Kante schwer festzustellen, wo sich dieser Ausschnitt entlang der gesamten Kante befindet.
+Ecken hingegen sind eindeutiger in einem Bild lokalisierbar.
+
+In Abbildung \ref{fig:featureSample} ist ein Beispiel für die Keypoints, die gefunden werden, zu sehen.
+
+\begin{figure}[h]
+
+    \centering
+		\includegraphics[scale=0.8]{bilder/featureSample.png}
+    	\caption{Von links nach rechts die gefundenen Keypoints von SIFT, SURF und ORB. Keypoints sind jeweils mit einem farbigen Kreis markiert. Die Farben haben keine Aussage über den Keypoint und dienen nur der besseren Unterscheidung nahe liegender Punkte. Die Anzahl der gezeigeten Keypoints ist für eine bessere Übersicht jeweils auf 100 beschränkt}
+\label{fig:featureSample}
+\end{figure}
+
+\subsubsection{Merkmalsdeskription}
+
+Von den Bildausschnitten, die von der Merkmalserkennung als interessant befunden wurden, soll nun in diesem Schritt ein Merkmalsvektor erstellt werden.
+Dieser Vektor soll den Ausschnitt so beschrieben, dass für den gleichen Ausschnitt aus einem anderen Bild der Deskriptorvektor sehr ähnlich ist.
+
+
+\subsubsection{Merkmalsabgleich}
+
+Nachdem die Merkmalsvektoren für interessante Bildausschnitte erstellt wurden, kann nun versucht werden, Merkmale aus einem Bild in einem anderen wiederzufinden.
+Da die Vektoren so konstruiert sind, dass ähnliche Bereiche zu ähnlichen Vektoren führen, kann ein Merkmal eines Bildes in einem anderen wiedergefunden werden, indem man den Vektor mit der geringsten Distanz findet.
+
+
+In Abbildung \ref{fig:matchingSample} ist ein Beispiel für den Merkmalsabgleich zu sehen. Die Merkmale des gedrehten Bildes werden in denen des nicht gedrehten wiedergefunden werden.
+
+\begin{figure}[h]
+
+    \centering
+		\includegraphics[scale=0.8]{bilder/matchingSample.png}
+    	\caption{Die zusammengehörigen Keypoints sind jeweils mit einer Linie verbunden. Die Zahl der gezeigten Matches ist zur besseren Übersicht auf 20 beschränkt.}    	\label{fig:matchingSample}
+\end{figure}
+
+
+\subsubsection{Features from Accelerated Segment Test}
+\label{sec:fast}
+
+Das in Edward Rostens und Tom Drummonds Paper ''Machine learning for high-speed corner detection'' \footnote{\cite{Rosten:2006:MLH:2094437.2094478}}  vorgestellte Verfahren ''Features from Accelerated Segment Test'' (FAST) ist ein Merkmalsdetektor.
+
+Damit ein Punkt $p$ mit Intensität $I_p$ als Keypoint erkannt wird, betrachtet FAST einen Kreis um den Punkt. Es wird geprüft, ob es in diesem Kreis eine Menge mit $n$ zusammenhängenden Pixeln gibt, die eine der folgenden Bedingungen erfüllt:
+
+\begin{itemize}
+\item Die Intensität jedes Pixels in der Menge ist kleiner als $I_p - t$, wobei t eine konstante Schwelle ist
+\item Die Intensität jedes Pixels in der Menge ist größer als $I_p + t$, wobei t eine konstante Schwelle ist
+\end{itemize}
+
+Ist eine dieser Bedingunen erfüllt, wird der Punkt als Keypoint erkannt.
+
+\subsection{Weitere Methoden}
+
+\subsubsection{k-nächste-Nachbarn}
+\label{sub:knn}
+
+Der k-nächste-Nachbarn (k-Nearest-Neighbors) Algorithmus ist eine Klassifikationsmethode, mit der neue Datenpunkte anhand schon bekannter Daten klassifiziert werden können \footnote{\cite{doi:10.1080/00031305.1992.10475879}}.
+
+Sei $x \in \mathbb{R}^n$ der neue Datenpunkt, der einer von $m \in \mathbb{R}$ verschiedenen Klassen zugeordnet werden soll. Zudem sei $D \subseteq \mathbb{R}^n$ die Menge an Punkten, deren wahre Klasse bekannt ist.
+
+\begin{figure}[h]
+    \centering
+		\includegraphics[scale=0.45]{bilder/knn.png}
+    	\caption{k-nächste-Nachbarn Klassifikation für drei Klassen (Rot, Blau, Grün). Die Datenpunkte jeder Klasse sind farblich eingezeichnet. Die farbigen Bereiche zeigen an, wie ein neuer Datenpunkt klassifiziert wird, wenn er in diesen liegt.}
+    	\label{fig:knn}
+\end{figure}
+
+Nun wird ein $k$ gewählt und die $k$ nächsten Nachbarn von x in $D$ gesucht. Nun wird $x$ die Klasse zugewiesen, die durch eine einfache Mehrheitswahl der k nächsten Nachbarn bestimmt wird.
+Eine Visualisierung dieser Klassifikation ist in Abbildung \ref{fig:knn} dargestellt.
+
+\subsubsection{Hamming Distanz}
+\label{sub:hammingDistanz}
+
+Die Hamming Distanz ist eine Methode, mit der die Ähnlichkeit von zwei gleichlangen Zeichenketten gemessen werden kann \footnote{\cite{hamming}}.
+Sie ist definiert als die Anzahl der unterschiedlichen Stellen in den beiden Zeichenketten. 
+Die Hamming Distanz kann auch genutzt werden, um die Binärdarstellung zweier Zahlen zu vergleichen. So ist z.B. die Hamming Distanz von $1001$ und $0000$:
+\[
+H(1001, 0000) = 2
+\]
+
+
+\include{sift}
+
+\include{surf}
+
+\include{orb}

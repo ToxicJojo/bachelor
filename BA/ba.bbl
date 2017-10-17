@@ -1,0 +1,158 @@
+\begin{thebibliography}{BETVG08}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alt92]{doi:10.1080/00031305.1992.10475879}
+\textsc{Altman}, N.~S.:
+\newblock An Introduction to Kernel and Nearest-Neighbor Nonparametric
+  Regression.
+\newblock {In: }\emph{The American Statistician} 46 (1992), Nr. 3, 175-185.
+\newblock  \url{http://dx.doi.org/10.1080/00031305.1992.10475879}. --
+\newblock DOI 10.1080/00031305.1992.10475879
+
+\bibitem[BB05]{Burg06}
+\textsc{Burger}, Wilhelm ; \textsc{Burge}, Mark~J.:
+\newblock \emph{Digitale Bildverarbeitung : Eine Einführung mit Java und
+  ImageJ}.
+\newblock 2., überarbeitete Auflage.
+\newblock Berlin, Heidelberg : Springer-Verlag, 2005
+
+\bibitem[BETVG08]{Bay:2008:SRF:1370312.1370556}
+\textsc{Bay}, Herbert ; \textsc{Ess}, Andreas ; \textsc{Tuytelaars}, Tinne  ;
+  \textsc{Van~Gool}, Luc:
+\newblock Speeded-Up Robust Features (SURF).
+\newblock {In: }\emph{Comput. Vis. Image Underst.} 110 (2008), Juni, Nr. 3,
+  346--359.
+\newblock  \url{http://dx.doi.org/10.1016/j.cviu.2007.09.014}. --
+\newblock DOI 10.1016/j.cviu.2007.09.014. --
+\newblock ISSN 1077--3142
+
+\bibitem[Bis06]{Bishop:2006:PRM:1162264}
+\textsc{Bishop}, Christopher~M.:
+\newblock \emph{Pattern Recognition and Machine Learning (Information Science
+  and Statistics)}.
+\newblock Secaucus, NJ, USA : Springer-Verlag New York, Inc., 2006. --
+\newblock ISBN 0387310738
+
+\bibitem[CLSF10]{Calonder:2010:BBR:1888089.1888148}
+\textsc{Calonder}, Michael ; \textsc{Lepetit}, Vincent ; \textsc{Strecha},
+  Christoph  ; \textsc{Fua}, Pascal:
+\newblock BRIEF: Binary Robust Independent Elementary Features.
+\newblock {In: }\emph{Proceedings of the 11th European Conference on Computer
+  Vision: Part IV}.
+\newblock Springer-Verlag (ECCV'10). --
+\newblock ISBN 3--642--15560--X, 978--3--642--15560--4, 778--792
+
+\bibitem[DP]{douglasalgorithms}
+\textsc{Douglas}, D.H. ; \textsc{Peucker}, T.K.:
+\newblock \emph{Algorithms for the Reduction of the Number of Points Required
+  to Represent a Digitized Line Or Its Caricature}.
+\newblock Canadian Cartographer
+  \url{https://books.google.de/books?id=DCkLNQAACAAJ}
+
+\bibitem[Duf15]{GuardianMagicReport}
+\textsc{Duffy}, Owen:
+\newblock \emph{How Magic: the Gathering became a pop-culture hit – and where
+  it goes next}.
+\newblock
+  \url{https://www.theguardian.com/technology/2015/jul/10/magic-the-gathering-pop-culture-hit-where-next?CMP=fb_gu},
+  Juli 2015. --
+\newblock Accessed: 2017-24-06
+
+\bibitem[Ham50]{hamming}
+\textsc{Hamming}, {R. W.}:
+\newblock {Error Detecting and Error Correcting Codes}.
+\newblock {In: }\emph{Bell System Techincal Journal} 29 (1950), S. 147--160
+
+\bibitem[Has16]{HasbroQ1Financial}
+\emph{Hasbro First Quarter 2016 Financial Results Conference Call Management
+  Remarks}.
+\newblock
+  \url{http://files.shareholder.com/downloads/HAS/4483778445x0x886351/9CC355D1-0642-415B-BB68-CC2B756A7E6E/Hasbro_Q1_2016_Earnings_Management_Remarks_FINAL.pdf}.
+\newblock \,Version:\,apr 2016
+
+\bibitem[HS88]{Harris88alvey}
+\textsc{Harris}, C. ; \textsc{Stephens}, M.:
+\newblock A Combined Corner and Edge Detector.
+\newblock {In: }\emph{Proceedings of the 4th Alvey Vision Conference}, 1988, S.
+  147--151
+
+\bibitem[Lin94]{Lindeberg94scale-spacetheory:}
+\textsc{Lindeberg}, Tony:
+\newblock Scale-space theory: A basic tool for analysing structures at
+  different scales.
+\newblock {In: }\emph{Journal of Applied Statistics}  (1994), S. 224--270
+
+\bibitem[Low99]{Lowe:1999:ORL:850924.851523}
+\textsc{Lowe}, David~G.:
+\newblock Object Recognition from Local Scale-Invariant Features.
+\newblock {In: }\emph{Proceedings of the International Conference on Computer
+  Vision-Volume 2 - Volume 2}.
+\newblock IEEE Computer Society (ICCV '99). --
+\newblock ISBN 0--7695--0164--8, 1150--
+
+\bibitem[Low04]{Lowe2004}
+\textsc{Lowe}, David~G.:
+\newblock Distinctive Image Features from Scale-Invariant Keypoints.
+\newblock {In: }\emph{Int. J. Comput. Vision} 60 (2004), November, Nr. 2,
+  91--110.
+\newblock  \url{http://dx.doi.org/10.1023/B:VISI.0000029664.99615.94}. --
+\newblock DOI 10.1023/B:VISI.0000029664.99615.94. --
+\newblock ISSN 0920--5691
+
+\bibitem[RD06]{Rosten:2006:MLH:2094437.2094478}
+\textsc{Rosten}, Edward ; \textsc{Drummond}, Tom:
+\newblock Machine Learning for High-speed Corner Detection.
+\newblock {In: }\emph{Proceedings of the 9th European Conference on Computer
+  Vision - Volume Part I}.
+\newblock Springer-Verlag (ECCV'06). --
+\newblock ISBN 3--540--33832--2, 978--3--540--33832--1, 430--443
+
+\bibitem[RRKB11]{Rublee:2011:OEA:2355573.2356268}
+\textsc{Rublee}, Ethan ; \textsc{Rabaud}, Vincent ; \textsc{Konolige}, Kurt  ;
+  \textsc{Bradski}, Gary:
+\newblock ORB: An Efficient Alternative to SIFT or SURF.
+\newblock {In: }\emph{Proceedings of the 2011 International Conference on
+  Computer Vision}.
+\newblock IEEE Computer Society (ICCV '11). --
+\newblock ISBN 978--1--4577--1101--5, 2564--2571
+
+\bibitem[SA85]{journals/cvgip/SuzukiA85}
+\textsc{Suzuki}, Satoshi ; \textsc{Abe}, Keiichi:
+\newblock Topological structural analysis of digitized binary images by border
+  following.
+\newblock {In: }\emph{Computer Vision, Graphics, and Image Processing} 30
+  (1985), Nr. 1, 32-46.
+\newblock
+  \url{http://dblp.uni-trier.de/db/journals/cvgip/cvgip30.html#SuzukiA85}
+
+\bibitem[Twi15]{TwitchStat}
+\emph{Twitch viewer statistic}.
+\newblock \url{https://twitter.com/TwitchStat/status/565121827593543681},
+  Februar 2015. --
+\newblock Accessed: 2017-24-06
+
+\bibitem[Uni02]{international2002parameter}
+\textsc{Union}, International~T.:
+\newblock \emph{Parameter Values for the HDTV Standards for Production and
+  International Programme Exchange: Recommendation ITU-R BT.709-5 : (Question
+  ITU-R 27/11).}
+\newblock International Telecommunication Union
+  \url{https://books.google.de/books?id=5n6bXwAACAAJ}
+
+\bibitem[Uni07]{international2007studio}
+\textsc{Union}, International~T.:
+\newblock \emph{Studio Encoding Parameters of Digital Television for Standard
+  4:3 and Wide-screen 16:9 Aspect Ratios: Recommendation ITU-R BT.601-6 :
+  (Question ITU-R 1/6).}
+\newblock International Telecommunication Union
+  \url{https://books.google.de/books?id=NpAwPwAACAAJ}
+
+\bibitem[VJ01]{Viola01rapidobject}
+\textsc{Viola}, Paul ; \textsc{Jones}, Michael:
+\newblock Rapid object detection using a boosted cascade of simple features,
+  2001, S. 511--518
+
+\end{thebibliography}

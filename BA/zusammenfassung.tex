@@ -1,0 +1,12 @@
+%%% Die folgende Zeile nicht ändern!
+\section*{\ifthenelse{\equal{\sprache}{deutsch}}{Zusammenfassung}{Abstract}}
+%%% Zusammenfassung:
+Ziel der vorliegenden Arbeit ist es eine Grundlage für eine Anwendung zu schaffen, die Karten des Spiels ''Magic The Gathering'' in Echtzeitvideos finden und erkennen kann.
+
+Hierfür werden drei verschiedene Verfahren ''Scale-Invariant Feature Transform'' (SIFT) \footnote{\cite{Lowe2004}}, ''Speeded Up Robust Features'' \footnote{\cite{Bay:2008:SRF:1370312.1370556}} (SURF) und ''Oriented FAST and Rotated BRIEF'' \footnote{\cite{Rublee:2011:OEA:2355573.2356268}} (ORB)  betrachtet, die Bildmerkmale erzeugen. Mit diesen wird ein Klassifikator erstellt, der Bildausschnitten von Karten aus Videobildern der Ursprungskarte zuordnen kann.
+Um die Erkennungsrate des Klassifikators in Verbindung mit den einzelnen Verfahren zu überprüfen, wird händisch ein Testdatensatz erstellt. Mit diesem wird sowohl die Erkennungsrate als auch die Geschwindigkeit der Vefahren geprüft.
+Die drei Verfahren kommen auf eine Erkennungsrate von 99.67\% (SIFT), 98.33\% (SURF) und 99.33\% (ORB).
+Jedoch sind SIFT und SURF zu langsam, um eine Erkennung in Echzeit zu gewährleisten.
+Es wird aufgezeit, dass SIFT in kleinen Bildern eine Tendenz hat, viele Bildmerkmale an Kanten zu finden.
+Es wird zudem ein Verfahren entwickelt, mit dem Karten in Videobildern lokalisiert werden können.  In Kombination mit dem Klassifikator können so Karten automatisch in Videos gefunden und klassifiziert werden.
+In einem Versuch, den Klassifikator durch mehr Trainingsdaten zu verbessern, werden Karten automatisch in Videos lokalisiert, klassifiziert und ausgeschnitten. Durch die Vergrößerung des Trainingsdatensatzes lässt sich eine geringe Verbesserung der Erkennungrate feststellen. Die Ergebnisse zeigen jedoch, dass mit mehr Videodaten die Erkennungsrate weiter verbessert werden kann.

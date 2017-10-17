@@ -1,0 +1,41 @@
+\section{Erweiterung des Trainingsdatensatzes}\raggedbottom 
+
+Die Erkennungsraten, die in \ref{sec:auswertung} vorgestellt wurden, sind bereits relativ hoch. Dies wurde mit einem Trainingsdatensatz erreicht, der für jede Klasse nur ein einziges Beispiel hatte. Es soll geprüft werden, ob ein größerer Trainingsdatensatz, der mehr Bilder für die Klassen hat, zu einer besseren Erkennungsrate führt. 
+
+Der Trainingsdatensatz soll durch ein automatisiertes Verfahren vergrößert werden. Hierbei sollen automatisch in Videos Bildausschnitte mit Karten gefunden und klassifiziert werden. Die so klassifizierten Bildausschnitte werden mit der gefundenen Klasse zusammen gespeichert und dem Trainingsdatensatz hinzugefügt.
+
+
+\include{kartenFinden}
+
+
+\subsection{Auswertung}
+
+Der Trainingsdatensatz wurde mit dem in \ref{sec:kartenFinden} erläuterten Verfahren erweitert. Dieser Trainingsdatensatz enthält neben den ürsprünglichen 264 Bildern, 1320 Bilder verteilt auf 129 Klassen.
+
+Bei dieser Auswertung wird nur noch das Verfahren ORB betrachtet, da die beiden anderen Verfahren aufgrund ihrer Geschwindikeit nicht für eine Erkennung in Echtzeit nutzbar sind.
+
+\subsubsection{Erkennungsrate}
+
+Nachdem der Trainingsdatensatz erweitert wurde, lassen sich Veränderungen in der Erkennungsrate beobachten.
+Während die Erkennung beim Standarddatensatz leicht schlechter wurde, ist die Erkennungsrate für die drei anderen Datensätze gestiegen (siehe Abbildung \ref{table:result2}).
+Es ist zu beobachten dass es für alle 129 Klassen die mehr Trainigsdaten erhalten haben keine falsch klassfizierte Karte mehr gibt. Alle falsch klassifizierten Karten stammen aus den 135 Klassen, für die keine Trainigsdaten aus Videos generiert wurde.
+Dies wirft die Vermutung auf, dass mehr Trainingsvideos in denen alle Klassen gefunden werden können, zu einem noch besseren Ergebnis führe könnten.
+
+\begin{table}
+\centering
+	\begin{tabular}{  l c c c c  }
+	  Verfahren & Normal & Rotation & Helligkeit & Rotation+Helligkeit \\
+	  \midrule
+	  ORB & 297  (99.00\%) & 2944 (98.13\%) & 2954 (98.47\%) & 2938 (97.93\%) \\
+	\end{tabular}
+
+\caption{Erkannte Karten nachdem der Trainingsdatensatz erweitert wurde. In Klammern ist jeweils die prozentuale Erkennungsrate angegeben.}
+\label{table:result2}
+\end{table}
+
+
+\subsubsection{Geschwindigkeit}
+
+Durch den größeren Trainigsdatensatz gibt es mehr Merkmale, für den Merkmalsabgleich. Dadurch verlängert sich die Zeit, die gebraucht wird um eine Karte zu klassifizieren.
+Es wurden 54 Sekunden gebraucht um den ganzen Standarddatensatz zu klassifizieren. Dies entspricht ca. 0.19 Sekunden pro Karte.
+Diese Geschwindigkeit ist immernpch ausreichend um Karten in Echtzeit zu klassifizieren.

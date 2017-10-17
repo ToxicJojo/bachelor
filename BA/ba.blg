@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ba.aux
+A level-1 auxiliary file: sift.aux
+A level-1 auxiliary file: surf.aux
+A level-1 auxiliary file: orb.aux
+A level-1 auxiliary file: kartenFinden.aux
+The style file: alphadin.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib
+Warning--I didn't find a database entry for ""
+Warning--to sort, need author or key in HasbroQ1Financial
+Warning--to sort, need author or key in TwitchStat
+Warning--empty booktitle in Viola01rapidobject
+You've used 20 entries,
+            4372 wiz_defined-function locations,
+            987 strings with 10655 characters,
+and the built_in function-call counts, 12857 in all, are:
+= -- 1411
+> -- 281
+< -- 333
++ -- 369
+- -- 97
+* -- 894
+:= -- 2076
+add.period$ -- 29
+call.type$ -- 20
+change.case$ -- 93
+chr.to.int$ -- 20
+cite$ -- 25
+duplicate$ -- 340
+empty$ -- 993
+format.name$ -- 150
+if$ -- 2677
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 76
+newline$ -- 126
+num.names$ -- 54
+pop$ -- 119
+preamble$ -- 1
+purify$ -- 133
+quote$ -- 0
+skip$ -- 578
+stack$ -- 0
+substring$ -- 1267
+swap$ -- 75
+text.length$ -- 56
+text.prefix$ -- 9
+top$ -- 0
+type$ -- 146
+warning$ -- 3
+while$ -- 95
+width$ -- 25
+write$ -- 285
+(There were 4 warnings)

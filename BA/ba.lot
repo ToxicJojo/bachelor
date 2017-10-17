@@ -1,0 +1,5 @@
+\select@language {ngerman}
+\contentsline {table}{\numberline {1}{\ignorespaces \IeC {\"U}bersicht h\IeC {\"a}ufig verwendeter Merkmalsdetektoren und Merkmalsbeschreibern.\relax }}{8}{table.caption.8}
+\contentsline {table}{\numberline {2}{\ignorespaces Erkannte Karten pro Verfahren und Datensatz. In Klammern ist jeweils die prozentuale Erkennungsrate angegeben.\relax }}{27}{table.caption.22}
+\contentsline {table}{\numberline {3}{\ignorespaces Laufzeit der einzelnen Verfahren f\IeC {\"u}r den Standard Datensatz in Sekunden.\relax }}{28}{table.caption.24}
+\contentsline {table}{\numberline {4}{\ignorespaces Erkannte Karten nachdem der Trainingsdatensatz erweitert wurde. In Klammern ist jeweils die prozentuale Erkennungsrate angegeben.\relax }}{34}{table.caption.31}

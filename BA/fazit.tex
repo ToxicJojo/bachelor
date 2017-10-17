@@ -1,0 +1,17 @@
+\section{Fazit}\raggedbottom 
+
+Diese Arbeit wurde mit dem Ziel begonnen, ''Magic the Gathering'' Karten in Videobildern zu finden und zu erkennen, um eine Grundlage für eine Anwendung zu schaffen, die dies automatisch in einem Livevideo kann. 
+
+Zur Klassifizierung von Karten werden Bildmerkmale genutzt. Insbesondere wurde die Anwendbarkeit von SIFT, SURF und ORB analysiert.
+Bei den drei untersuchten Verfahren zeigt sich, dass alle in der Lage sind, Karten mit einer hohen Erkennungsrate zu klassifizieren. Alle Verfahren konnten eine Erkennnungsrate von über 98\% erreichen.
+
+Dabei zeigte sich ein Performance Abfall des SIFT Verfahrens bei gedrehten Karten. Dieser konnte bei einer näheren Anaylse auf eine Hohe Anzahl von Keypoints an Kanten zurück geführt werden. 
+
+Aufgrund der langsamen Geschwindigkeit von SIFT und SURF eignet sich nur ORB dafür, genutzt zu werden, um eine Anwendung zu Implementieren, die Karten in Echtzeit erkennt.
+
+Es konnte eine grundlegende Methode zur Lokalisierung von Karten in Videobildern entwickelt werden. Diese Methode ist jedoch nicht in der Lage, teilweise verdeckte Karten zu finden. Zudem muss weitergehend untersucht werden, wie gut die Methode Karten lokalisiert.
+
+Durch die Kombination der Lokaliserung und Klassifizierung von Karten, konnte der Trainingsdatensatz mithilfe von bereits vorhandenen Videos automatisch erweitert werden. Diese Erweiterung führte zu einer leichten Verbesserung Erkennungsrate. Es lässt sich jedoch erkennen, dass durch mehr Videomaterial mit mehr verschiedenen Karten sich die Erkennungsrate weiter steigern lässt.
+
+Durch Lokalisierung und Klassifizierung sind die Grundlagen für eine automatische Erkennung von Karten in Echtzeit gelegt. Eine solche Anwendung würde es neuen Spielern des Spiels ermöglichen, Turniere mitzuverfolgen und die Strategien der Spieler nachzuvollziehen.
+Um so eine Anwendung zu implementieren, muss geklärt werden, wie sie die Videodaten eines im Browser laufenden Livestreams abrufen kann. 

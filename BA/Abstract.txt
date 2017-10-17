@@ -1,0 +1,5 @@
+Das Ziel dieser Bachelorarbeit ist es herauszufinden, welche Feature Detektoren und Descriptor am besten geeignet sind um Magic Karten in Videos zu klassifizieren.
+Hierfür wird in einer ersten Phase ein gelabelter Datensatz, aus den Karten in Videos, gebildet mit dem die verschiedenen Verfahren getestet werden könnnen.
+Dabei besteht die Herauforderung, die zum teil gedrehten Karten in den Videos zu finden.
+Für die Testphase erhalten die Verfahren eine Datensatz mit Karten in guter Qualität aus denen sie die Features extrahieren. Diese werden dann mit dem Testdatensatz gematched.
+Dabei wird untersucht, wie gut die Performance der einzelnen Verfahren ist und welche Optimierungen im preprocessing der Daten gemacht werden können. 
